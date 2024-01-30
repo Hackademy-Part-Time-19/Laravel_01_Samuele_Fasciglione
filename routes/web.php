@@ -2,25 +2,37 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
-    return view('welcome',["titolo1"=>"Home"]);
-});
+    return view('welcome',);
+})->name('home');
+
 
 Route::get('/articoli', function () {
-    return view('articoli',["titolo2"=>"Articoli"]);
+
+    $articoli = [
+       0=> ['titolo' => 'Articolo0', 'descrizione' => 'Questa è una descrizione', 'nome' => 'Michele'],
+       1=> ['titolo' => 'Articolo1', 'descrizione' => 'Questa è una descrizione', 'nome' => 'Giovanni'],
+       2=> ['titolo' => 'Articolo2', 'descrizione' => 'Questa è una descrizione', 'nome' => 'Carmine'],
+       3=> ['titolo' => 'Articolo3', 'descrizione' => 'Questa è una descrizione', 'nome' => 'Giorgia'],
+
+    ];
+
+    return view('articoli', ['articoli' => $articoli]);
+})->name('articoli');
+
+Route::get('/articolo/{id}',function($id){
+    $articoli = [
+        0=> ['titolo' => 'Articolo0', 'descrizione' => 'Questa è una descrizione', 'nome' => 'Michele'],
+        1=> ['titolo' => 'Articolo1', 'descrizione' => 'Questa è una descrizione', 'nome' => 'Giovanni'],
+        2=> ['titolo' => 'Articolo2', 'descrizione' => 'Questa è una descrizione', 'nome' => 'Carmine'],
+        3=> ['titolo' => 'Articolo3', 'descrizione' => 'Questa è una descrizione', 'nome' => 'Giorgia'],
+ 
+     ];
+    return view('dettaglio',['articolo'=> $articoli[$id]]);
 });
 
+
 Route::get('/chiSono', function () {
-    return view('chisono',["titolo3"=>"Chi sono"]);
-});
+    return view('chisono',);
+})->name('chisono');
